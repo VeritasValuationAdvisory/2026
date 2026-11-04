@@ -1,0 +1,1201 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Veritas Valuation & Advisory | 维信评估与咨询</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Custom Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    .font-serif-title {
+      font-family: 'Cinzel', serif, Georgia;
+    }
+  </style>
+</head>
+<body class="bg-slate-900 text-slate-100 font-sans antialiased selection:bg-emerald-500 selection:text-slate-950">
+
+  <!-- ================= HEADER / NAVBAR ================= -->
+  <header class="sticky top-0 z-50 bg-slate-900/90 backdrop-blur-md border-b border-slate-800 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Logo -->
+      <a href="#" class="flex items-center space-x-3 group">
+        <div class="w-10 h-10 rounded bg-gradient-to-br from-emerald-500 to-emerald-700 flex items-center justify-center shadow-lg shadow-emerald-500/10 group-hover:scale-105 transition-transform">
+          <i data-lucide="scale" class="w-6 h-6 text-slate-950 font-bold"></i>
+        </div>
+        <div class="flex flex-col">
+          <span class="font-serif-title text-xl sm:text-2xl tracking-wider font-bold text-slate-100 leading-tight">
+            VERITAS
+          </span>
+          <span class="text-[10px] tracking-widest text-emerald-400 font-medium uppercase">
+            Valuation & Advisory
+          </span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-300">
+        <a href="#about" class="hover:text-emerald-400 transition-colors" data-t="nav.about">关于我们</a>
+        <a href="#services" class="hover:text-emerald-400 transition-colors" data-t="nav.services">服务领域</a>
+        <a href="#cases" class="hover:text-emerald-400 transition-colors" data-t="nav.cases">案例与洞察</a>
+        <a href="#team" class="hover:text-emerald-400 transition-colors" data-t="nav.team">专家团队</a>
+        <a href="#contact" class="hover:text-emerald-400 transition-colors" data-t="nav.contact">联系我们</a>
+      </nav>
+
+      <!-- Right Controls: Language Selector & CTA -->
+      <div class="hidden md:flex items-center space-x-4">
+        
+        <!-- Language Switcher Dropdown -->
+        <div class="relative">
+          <button
+            id="langDropdownBtn"
+            type="button"
+            class="flex items-center space-x-2 bg-slate-800/80 hover:bg-slate-800 border border-slate-700/80 px-3 py-1.5 rounded-md text-xs font-medium text-slate-200 transition-all"
+          >
+            <i data-lucide="globe" class="w-3.5 h-3.5 text-emerald-400"></i>
+            <span id="currentLangLabel">简体中文</span>
+            <i data-lucide="chevron-down" class="w-3.5 h-3.5 text-slate-400"></i>
+          </button>
+
+          <div id="langDropdownMenu" class="hidden absolute right-0 mt-2 w-36 bg-slate-800 border border-slate-700 rounded-md shadow-xl py-1 z-50">
+            <button onclick="setLanguage('en')" class="w-full text-left px-4 py-2 text-xs hover:bg-slate-700/60 text-slate-300">English (EN)</button>
+            <button onclick="setLanguage('sc')" class="w-full text-left px-4 py-2 text-xs hover:bg-slate-700/60 text-emerald-400 font-semibold">简体中文</button>
+            <button onclick="setLanguage('tc')" class="w-full text-left px-4 py-2 text-xs hover:bg-slate-700/60 text-slate-300">繁體中文</button>
+          </div>
+        </div>
+
+        <a
+          href="#contact"
+          class="bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-slate-950 font-semibold text-xs px-4 py-2 rounded shadow-md transition-all duration-200 flex items-center space-x-1.5"
+        >
+          <span data-t="nav.getInTouch">预约咨询</span>
+          <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+        </a>
+      </div>
+
+      <!-- Mobile menu button -->
+      <div class="flex items-center space-x-3 md:hidden">
+        <button id="mobileLangToggle" type="button" class="px-2.5 py-1 bg-slate-800 border border-slate-700 text-xs text-emerald-400 rounded uppercase">
+          SC
+        </button>
+        <button id="mobileMenuBtn" type="button" class="p-2 rounded-md text-slate-400 hover:text-slate-100 hover:bg-slate-800">
+          <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile menu drawer -->
+    <div id="mobileMenu" class="hidden md:hidden bg-slate-900 border-b border-slate-800 px-4 pt-2 pb-6 space-y-3">
+      <a href="#about" class="mobile-link block py-2 text-slate-200 font-medium hover:text-emerald-400" data-t="nav.about">关于我们</a>
+      <a href="#services" class="mobile-link block py-2 text-slate-200 font-medium hover:text-emerald-400" data-t="nav.services">服务领域</a>
+      <a href="#cases" class="mobile-link block py-2 text-slate-200 font-medium hover:text-emerald-400" data-t="nav.cases">案例与洞察</a>
+      <a href="#team" class="mobile-link block py-2 text-slate-200 font-medium hover:text-emerald-400" data-t="nav.team">专家团队</a>
+      <a href="#contact" class="mobile-link block py-2 text-slate-200 font-medium hover:text-emerald-400" data-t="nav.contact">联系我们</a>
+      <div class="pt-2">
+        <a href="#contact" class="mobile-link w-full text-center bg-emerald-500 text-slate-950 font-semibold py-2.5 rounded block text-sm" data-t="nav.getInTouch">
+          预约咨询
+        </a>
+      </div>
+    </div>
+  </header>
+
+
+  <!-- ================= HERO SECTION ================= -->
+  <section class="relative pt-12 pb-24 lg:pt-24 lg:pb-32 overflow-hidden bg-gradient-to-b from-slate-900 via-slate-900 to-slate-950">
+    <div class="absolute inset-0 bg-[radial-gradient(#1e293b_1px,transparent_1px)] [background-size:24px_24px] opacity-25 pointer-events-none"></div>
+    <div class="absolute -top-40 -right-40 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute top-1/2 -left-40 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        
+        <!-- Top Badge -->
+        <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-slate-800/90 border border-slate-700/80 text-xs text-emerald-400 mb-6 shadow-sm">
+          <i data-lucide="sparkles" class="w-3.5 h-3.5 text-emerald-400"></i>
+          <span data-t="hero.badge">亚太区及全球领先的独立财务评估与ESG咨询机构</span>
+        </div>
+
+        <!-- Main Headline -->
+        <h1 class="font-serif-title text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-tight text-slate-100 mb-6">
+          <span data-t="hero.titlePre">独立、客观、</span>
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-emerald-500" data-t="hero.titleHighlight">严谨</span>
+          <span data-t="hero.titlePost">的评估与咨询服务</span>
+        </h1>
+
+        <!-- Subtitle -->
+        <p class="text-base sm:text-lg text-slate-400 leading-relaxed mb-8 max-w-2xl" data-t="hero.subtitle">
+          为机构投资者、上市公司及跨国企业提供符合国际标准的财务报告评估、交易咨询及深度资产估值服务，赋能资本市场重大决策。
+        </p>
+
+        <!-- Action Buttons -->
+        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 mb-14">
+          <a href="#services" class="inline-flex items-center justify-center px-6 py-3.5 rounded bg-gradient-to-r from-emerald-500 to-emerald-600 text-slate-950 font-semibold text-sm hover:from-emerald-600 hover:to-emerald-700 transition shadow-lg shadow-emerald-500/10">
+            <span data-t="hero.primaryCta">探索服务领域</span>
+            <i data-lucide="chevron-right" class="w-4 h-4 ml-2"></i>
+          </a>
+          <a href="#contact" class="inline-flex items-center justify-center px-6 py-3.5 rounded border border-slate-700 bg-slate-800/60 hover:bg-slate-800 text-slate-200 text-sm font-medium transition">
+            <span data-t="hero.secondaryCta">预约专业咨询</span>
+          </a>
+        </div>
+
+        <!-- Key Metrics Grid -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 pt-10 border-t border-slate-800">
+          <div class="p-4 rounded-lg bg-slate-800/40 border border-slate-800">
+            <div class="font-serif-title text-2xl sm:text-4xl font-bold text-emerald-400 mb-1">$50B+</div>
+            <div class="text-xs sm:text-sm text-slate-400 font-medium" data-t="hero.stat1Label">评估交易累计总额</div>
+          </div>
+          <div class="p-4 rounded-lg bg-slate-800/40 border border-slate-800">
+            <div class="font-serif-title text-2xl sm:text-4xl font-bold text-slate-100 mb-1">1,200+</div>
+            <div class="text-xs sm:text-sm text-slate-400 font-medium" data-t="hero.stat2Label">已完成专业项目</div>
+          </div>
+          <div class="p-4 rounded-lg bg-slate-800/40 border border-slate-800">
+            <div class="font-serif-title text-2xl sm:text-4xl font-bold text-slate-100 mb-1">10+ Yrs</div>
+            <div class="text-xs sm:text-sm text-slate-400 font-medium">行业经验沉淀</div>
+          </div>
+          <div class="p-4 rounded-lg bg-slate-800/40 border border-slate-800">
+            <div class="font-serif-title text-2xl sm:text-4xl font-bold text-emerald-400 mb-1">99.8%</div>
+            <div class="text-xs sm:text-sm text-slate-400 font-medium" data-t="hero.stat4Label">监管与审计通过率</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= ABOUT US SECTION ================= -->
+  <section id="about" class="py-20 bg-slate-900 border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <div class="lg:col-span-7">
+          <span class="text-xs font-bold tracking-wider text-emerald-400 uppercase" data-t="about.tag">立足之本</span>
+          <h2 class="font-serif-title text-2xl sm:text-4xl font-bold text-slate-100 mt-2 mb-6 leading-snug" data-t="about.title">
+            恪守诚信专业，精于财务估值
+          </h2>
+          <p class="text-slate-300 text-sm sm:text-base leading-relaxed mb-4" data-t="about.desc1">
+            维信评估与咨询（Veritas Valuation & Advisory）是一家享誉业界的独立财务评估与咨询机构。我们专注于提供机构级的价值评估、财务报告合规顾问及企业并购财务咨询服务。
+          </p>
+          <p class="text-slate-400 text-sm sm:text-base leading-relaxed mb-8" data-t="about.desc2">
+            我们的专家团队汇聚了来自投资银行、会计师事务所和国际资产评估机构的资深专业人士。严格遵循国际评估准则（IVS）、香港财务报告准则（HKFRS）、美国通用会计准则（US GAAP）及国际财务报告准则（IFRS），报告获国际监管机构及各大审计师广泛认可。
+          </p>
+
+          <div class="pt-4 border-t border-slate-800 flex flex-wrap gap-3">
+            <span class="px-3 py-1 rounded bg-slate-800 border border-slate-700 text-xs font-mono text-slate-300">IVS Certified</span>
+            <span class="px-3 py-1 rounded bg-slate-800 border border-slate-700 text-xs font-mono text-slate-300">HKFRS / IFRS Compliant</span>
+            <span class="px-3 py-1 rounded bg-slate-800 border border-slate-700 text-xs font-mono text-slate-300">US GAAP Fair Value</span>
+            <span class="px-3 py-1 rounded bg-slate-800 border border-slate-700 text-xs font-mono text-slate-300">RICS Standards</span>
+          </div>
+        </div>
+
+        <div class="lg:col-span-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4">
+          <div class="p-5 rounded-lg bg-slate-800/60 border border-slate-700/60 hover:border-emerald-500/40 transition">
+            <div class="flex items-center space-x-3 mb-2">
+              <i data-lucide="shield-check" class="w-5 h-5 text-emerald-400"></i>
+              <h3 class="font-semibold text-slate-100 text-base" data-t="about.v1Title">绝不妥协的独立性</h3>
+            </div>
+            <p class="text-xs text-slate-400 leading-relaxed" data-t="about.v1Desc">客观公正是我们立足之本，确保所有评估报告无任何利益冲突。</p>
+          </div>
+
+          <div class="p-5 rounded-lg bg-slate-800/60 border border-slate-700/60 hover:border-emerald-500/40 transition">
+            <div class="flex items-center space-x-3 mb-2">
+              <i data-lucide="bar-chart-3" class="w-5 h-5 text-emerald-400"></i>
+              <h3 class="font-semibold text-slate-100 text-base" data-t="about.v2Title">严谨的技术模型</h3>
+            </div>
+            <p class="text-xs text-slate-400 leading-relaxed" data-t="about.v2Desc">结合前沿财务模型与海量资本市场实证数据，确保评估结果经得起检验。</p>
+          </div>
+
+          <div class="p-5 rounded-lg bg-slate-800/60 border border-slate-700/60 hover:border-emerald-500/40 transition">
+            <div class="flex items-center space-x-3 mb-2">
+              <i data-lucide="award" class="w-5 h-5 text-emerald-400"></i>
+              <h3 class="font-semibold text-slate-100 text-base" data-t="about.v3Title">卓越的监管合规性</h3>
+            </div>
+            <p class="text-xs text-slate-400 leading-relaxed" data-t="about.v3Desc">在港交所（HKEX）、美国证监会（SEC）及四大审计应对中拥有卓著声誉。</p>
+          </div>
+
+          <div class="p-5 rounded-lg bg-slate-800/60 border border-slate-700/60 hover:border-emerald-500/40 transition">
+            <div class="flex items-center space-x-3 mb-2">
+              <i data-lucide="globe-2" class="w-5 h-5 text-emerald-400"></i>
+              <h3 class="font-semibold text-slate-100 text-base" data-t="about.v4Title">全球化格局与本地经验</h3>
+            </div>
+            <p class="text-xs text-slate-400 leading-relaxed" data-t="about.v4Desc">具备跨国业务能力，深谙亚洲、欧洲及北美本土法规与市场环境。</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SERVICES SECTION ================= -->
+  <section id="services" class="py-24 bg-slate-950">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <span class="text-xs font-bold tracking-wider text-emerald-400 uppercase" data-t="services.tag">服务体系</span>
+        <h2 class="font-serif-title text-3xl sm:text-4xl font-bold text-slate-100 mt-2 mb-4" data-t="services.title">
+          全方位的评估与财务咨询服务
+        </h2>
+        <p class="text-slate-400 text-sm sm:text-base" data-t="services.subtitle">
+          覆盖企业全生命周期的定制化估值解决方案
+        </p>
+      </div>
+
+      <!-- Category Filter Tabs -->
+      <div class="flex flex-wrap justify-center gap-2 mb-12">
+        <button onclick="filterServices('all')" class="service-tab-btn active px-4 py-2 rounded-full text-xs font-medium transition bg-emerald-500 text-slate-950 font-semibold shadow-md" data-cat="all" data-t="services.all">全部服务</button>
+        <button onclick="filterServices('catFinancial')" class="service-tab-btn px-4 py-2 rounded-full text-xs font-medium transition bg-slate-900 border border-slate-800 text-slate-300 hover:border-slate-700" data-cat="catFinancial" data-t="services.catFinancial">财务报告评估</button>
+        <button onclick="filterServices('catMA')" class="service-tab-btn px-4 py-2 rounded-full text-xs font-medium transition bg-slate-900 border border-slate-800 text-slate-300 hover:border-slate-700" data-cat="catMA" data-t="services.catMA">并购与企业融资</button>
+        <button onclick="filterServices('catIP')" class="service-tab-btn px-4 py-2 rounded-full text-xs font-medium transition bg-slate-900 border border-slate-800 text-slate-300 hover:border-slate-700" data-cat="catIP" data-t="services.catIP">无形资产及知识产权</button>
+        <button onclick="filterServices('catRealEstate')" class="service-tab-btn px-4 py-2 rounded-full text-xs font-medium transition bg-slate-900 border border-slate-800 text-slate-300 hover:border-slate-700" data-cat="catRealEstate" data-t="services.catRealEstate">房地产及固定资产</button>
+        <button onclick="filterServices('catESG')" class="service-tab-btn px-4 py-2 rounded-full text-xs font-medium transition bg-slate-900 border border-slate-800 text-slate-300 hover:border-slate-700" data-cat="catESG" data-t="services.catESG">ESG与可持续发展</button>
+      </div>
+
+      <!-- Services Grid -->
+      <div id="servicesContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Rendered dynamically via JavaScript -->
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= CASES & INSIGHTS SECTION ================= -->
+  <section id="cases" class="py-24 bg-slate-900 border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+        <div>
+          <span class="text-xs font-bold tracking-wider text-emerald-400 uppercase" data-t="cases.tag">业绩展示</span>
+          <h2 class="font-serif-title text-3xl sm:text-4xl font-bold text-slate-100 mt-2" data-t="cases.title">
+            精选项目案例与估值洞察
+          </h2>
+        </div>
+        <p class="text-slate-400 text-sm max-w-md mt-4 md:mt-0" data-t="cases.subtitle">
+          我们为各行业头部企业及投资机构出具的代表性咨询业绩
+        </p>
+      </div>
+
+      <div id="casesContainer" class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <!-- Rendered dynamically via JavaScript -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= EXPERT TEAM SECTION (BENJAMIN XU) ================= -->
+  <section id="team" class="py-24 bg-slate-950">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-xs font-bold tracking-wider text-emerald-400 uppercase" data-t="team.tag">专家领衔</span>
+        <h2 class="font-serif-title text-3xl sm:text-4xl font-bold text-slate-100 mt-2 mb-4" data-t="team.title">
+          独立评估专家：许悦 (Benjamin Xu)
+        </h2>
+        <p class="text-slate-400 text-sm sm:text-base" data-t="team.subtitle">
+          持有 CFA、RICS、FRM 及 CMA 等多项国际权威专业资质的资深独立评估师。
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 bg-slate-900 border border-slate-800 rounded-2xl p-6 sm:p-10 shadow-2xl">
+        
+        <!-- Left Column: Profile Card with Benjamin's Photo -->
+        <div class="lg:col-span-4 flex flex-col items-center text-center lg:border-r border-slate-800 lg:pr-8">
+          <div class="w-44 h-56 rounded-xl bg-slate-800 border-2 border-emerald-500/40 mb-6 shadow-xl overflow-hidden group">
+            <img 
+              src="https://raw.githubusercontent.com/shadcn.png" 
+              alt="Benjamin Xu (Yue XU)" 
+              class="w-full h-full object-cover object-top filter contrast-[1.03]"
+              onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'100%\' height=\'100%\' viewBox=\'0 0 300 400\'><rect width=\'100%\' height=\'100%\' fill=\'%231e293b\'/><circle cx=\'150\' cy=\'140\' r=\'60\' fill=\'%23334155\'/><path d=\'M60,340 C60,240 240,240 240,340 Z\' fill=\'%23334155\'/><text x=\'50%\' y=\'50%\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%2334d399\' font-size=\'22\' font-family=\'sans-serif\'>Benjamin Xu</text></svg>';"
+            />
+          </div>
+
+          <h3 class="font-serif-title text-2xl font-bold text-slate-100 mb-1" id="expertName">
+            许悦 (Benjamin Xu)
+          </h3>
+          <p class="text-xs font-semibold text-emerald-400 uppercase tracking-widest mb-4" id="expertRole">
+            独立评估专家 / 資深獨立評估師
+          </p>
+
+          <div class="flex flex-wrap justify-center gap-1.5 mb-6">
+            <span class="px-2.5 py-1 rounded bg-slate-800 text-[11px] font-mono text-emerald-300 font-semibold border border-emerald-500/20">CFA</span>
+            <span class="px-2.5 py-1 rounded bg-slate-800 text-[11px] font-mono text-emerald-300 font-semibold border border-emerald-500/20">RICS</span>
+            <span class="px-2.5 py-1 rounded bg-slate-800 text-[11px] font-mono text-emerald-300 font-semibold border border-emerald-500/20">FRM</span>
+            <span class="px-2.5 py-1 rounded bg-slate-800 text-[11px] font-mono text-emerald-300 font-semibold border border-emerald-500/20">CMA</span>
+          </div>
+
+          <div class="w-full text-left bg-slate-950 p-4 rounded-lg border border-slate-800 space-y-2">
+            <span class="text-[11px] uppercase tracking-wider text-slate-400 font-bold block mb-1" data-t="team.credentialsTitle">
+              执业资质与教育背景
+            </span>
+            <ul class="text-xs text-slate-300 space-y-1">
+              <li>• BSc. in Property Management</li>
+              <li>• BA in Social Policy and Administration</li>
+              <li>• MSc. in Finance (Univ. of Illinois at Urbana-Champaign)</li>
+              <li>• MSc. in ESG and Sustainability (PolyU)</li>
+              <li>• CFA Charterholder, RICS Member, FRM, CMA, CPA (Associate)</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Right Column: Detailed CV & Assignments -->
+        <div class="lg:col-span-8 space-y-8">
+          
+          <!-- Experience -->
+          <div>
+            <h4 class="text-sm font-bold text-emerald-400 uppercase tracking-wider mb-2 flex items-center space-x-2">
+              <i data-lucide="briefcase" class="w-4 h-4 text-emerald-400"></i>
+              <span data-t="team.experienceTitle">专业经验</span>
+            </h4>
+            <p class="text-xs sm:text-sm text-slate-300 leading-relaxed bg-slate-950/60 p-4 rounded border border-slate-800/80" data-t="team.experienceText">
+              拥有逾10年企业估值与咨询经验，涵盖公司估值、并购对价分摊（PPA）、厂房与设备、无形资产、金融工具评估、员工持股计划（ESOP）、可转债及商业争议解决等领域。
+            </p>
+          </div>
+
+          <!-- Areas of Expertise -->
+          <div>
+            <h4 class="text-sm font-bold text-emerald-400 uppercase tracking-wider mb-3" data-t="team.expertiseTitle">
+              核心擅长领域
+            </h4>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-slate-300">
+              <div class="flex items-center space-x-2 bg-slate-950/50 p-2.5 rounded border border-slate-800/60">
+                <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400 shrink-0"></i>
+                <span>Fixed Assets (Plants & Equipment)</span>
+              </div>
+              <div class="flex items-center space-x-2 bg-slate-950/50 p-2.5 rounded border border-slate-800/60">
+                <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400 shrink-0"></i>
+                <span>Business Enterprises & Intangible Assets</span>
+              </div>
+              <div class="flex items-center space-x-2 bg-slate-950/50 p-2.5 rounded border border-slate-800/60">
+                <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400 shrink-0"></i>
+                <span>Purchase Price Allocation (PPA) & ESOP</span>
+              </div>
+              <div class="flex items-center space-x-2 bg-slate-950/50 p-2.5 rounded border border-slate-800/60">
+                <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400 shrink-0"></i>
+                <span>Convertible Bonds & Financial Instruments</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Key Assignments -->
+          <div>
+            <h4 class="text-sm font-bold text-emerald-400 uppercase tracking-wider mb-3" data-t="team.assignmentsTitle">
+              代表性重点项目（精选）
+            </h4>
+            <div id="assignmentsList" class="bg-slate-950 p-4 rounded border border-slate-800 max-h-56 overflow-y-auto space-y-2 pr-2 text-xs text-slate-300">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+
+          <!-- Achievements -->
+          <div>
+            <h4 class="text-sm font-bold text-emerald-400 uppercase tracking-wider mb-2 flex items-center space-x-2">
+              <i data-lucide="book-open" class="w-4 h-4 text-emerald-400"></i>
+              <span data-t="team.achievementsTitle">行业活动与学术专著</span>
+            </h4>
+            <div class="text-xs text-slate-300 bg-slate-950/60 p-4 rounded border border-slate-800 space-y-2 leading-relaxed">
+              <p>• Professional judge and mentor for CFA Research Challenges (regional final round).</p>
+              <p>• CFA Level III exam grader since 2023.</p>
+              <p>• Delivered speeches on HKEx rules, business valuation, financial modeling across CFA Local Societies, universities, and civil service sectors.</p>
+              <p>• Co-authored the book <em>“Private Equity Fund – Values, Challenges and Career Development”</em> published by CFA Society (Shenzhen) in 2025.</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= CONTACT SECTION (FORMSPREE ONLY) ================= -->
+  <section id="contact" class="py-24 bg-slate-900 border-t border-slate-800">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="bg-slate-950 border border-slate-800 rounded-2xl p-6 sm:p-10 shadow-2xl">
+        <div class="text-center max-w-xl mx-auto mb-8">
+          <span class="text-xs font-bold tracking-wider text-emerald-400 uppercase" data-t="contact.tag">联系我们</span>
+          <h2 class="font-serif-title text-2xl sm:text-3xl font-bold text-slate-100 mt-2 mb-2" data-t="contact.title">
+            开启您的专业咨询
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-400" data-t="contact.subtitle">
+            通过下方表单联系我们的专业团队，就您的具体评估、并购或财务报告需求进行深度探讨。
+          </p>
+        </div>
+
+        <!-- Formspree Endpoint Form -->
+        <form id="contactForm" action="https://formspree.io/f/xgaadkng" method="POST" class="space-y-4">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-medium text-slate-300 mb-1.5"><span data-t="contact.formName">您的姓名</span> *</label>
+              <input type="text" name="name" required class="w-full bg-slate-900 border border-slate-800 rounded px-3.5 py-2.5 text-xs text-slate-100 focus:outline-none focus:border-emerald-500 transition">
+            </div>
+            <div>
+              <label class="block text-xs font-medium text-slate-300 mb-1.5"><span data-t="contact.formEmail">企业邮箱</span> *</label>
+              <input type="email" name="email" required class="w-full bg-slate-900 border border-slate-800 rounded px-3.5 py-2.5 text-xs text-slate-100 focus:outline-none focus:border-emerald-500 transition">
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-medium text-slate-300 mb-1.5" data-t="contact.formCompany">公司 / 机构名称</label>
+              <input type="text" name="company" class="w-full bg-slate-900 border border-slate-800 rounded px-3.5 py-2.5 text-xs text-slate-100 focus:outline-none focus:border-emerald-500 transition">
+            </div>
+            <div>
+              <label class="block text-xs font-medium text-slate-300 mb-1.5" data-t="contact.formService">所需服务类别</label>
+              <select name="service" class="w-full bg-slate-900 border border-slate-800 rounded px-3.5 py-2.5 text-xs text-slate-100 focus:outline-none focus:border-emerald-500 transition">
+                <option value="Financial Reporting">Financial Reporting Valuation (PPA/Impairment)</option>
+                <option value="M&A Advisory">M&A & Corporate Valuation Advisory</option>
+                <option value="Intangible Assets">IP & Intangible Assets</option>
+                <option value="Real Estate">Real Estate & Industrial Assets</option>
+                <option value="ESG">ESG Value Impact Assessment</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-medium text-slate-300 mb-1.5" data-t="contact.formMessage">项目需求与背景简述</label>
+            <textarea rows="4" name="message" required class="w-full bg-slate-900 border border-slate-800 rounded px-3.5 py-2.5 text-xs text-slate-100 focus:outline-none focus:border-emerald-500 transition"></textarea>
+          </div>
+
+          <button id="submitBtn" type="submit" class="w-full py-3.5 rounded bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-slate-950 font-semibold text-xs tracking-wider uppercase transition shadow-md">
+            <span data-t="contact.formSubmit">提交咨询请求</span>
+          </button>
+        </form>
+
+        <div id="formSuccess" class="hidden mt-4 p-4 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs text-center flex items-center justify-center space-x-2">
+          <i data-lucide="check-circle-2" class="w-4 h-4"></i>
+          <span data-t="contact.successMsg">感谢您的联系！您的咨询已成功提交，我们的团队将尽快与您取得联系。</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="bg-slate-950 border-t border-slate-800 py-12 text-slate-400 text-xs">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-slate-800/80 pb-8 mb-8 space-y-4 md:space-y-0">
+        <div class="flex items-center space-x-3">
+          <div class="w-8 h-8 rounded bg-emerald-500 flex items-center justify-center">
+            <i data-lucide="scale" class="w-5 h-5 text-slate-950"></i>
+          </div>
+          <span class="font-serif-title text-lg font-bold text-slate-200 tracking-wider">
+            VERITAS VALUATION & ADVISORY
+          </span>
+        </div>
+
+        <div class="flex flex-wrap gap-6 text-slate-400">
+          <a href="#about" class="hover:text-emerald-400 transition" data-t="nav.about">关于我们</a>
+          <a href="#services" class="hover:text-emerald-400 transition" data-t="nav.services">服务领域</a>
+          <a href="#cases" class="hover:text-emerald-400 transition" data-t="nav.cases">案例与洞察</a>
+          <a href="#team" class="hover:text-emerald-400 transition" data-t="nav.team">专家团队</a>
+          <a href="#contact" class="hover:text-emerald-400 transition" data-t="nav.contact">联系我们</a>
+        </div>
+      </div>
+
+      <p class="max-w-4xl text-slate-500 leading-relaxed mb-6" data-t="footer.disclaimer">
+        维信评估与咨询（Veritas Valuation & Advisory）提供独立的资产与企业估值服务。所有评估报告均依据《国际评估准则》（IVS）及相关监管法律法规出具。
+      </p>
+
+      <div class="flex flex-col sm:flex-row justify-between items-center text-slate-500 pt-4 border-t border-slate-900">
+        <div>
+          &copy; <span id="year"></span> <span data-t="footer.rights">版权所有。维信评估与咨询保留所有权利。</span>
+        </div>
+        <div class="flex space-x-6 mt-4 sm:mt-0">
+          <a href="#" class="hover:text-slate-400 transition" data-t="footer.privacy">隐私政策</a>
+          <a href="#" class="hover:text-slate-400 transition" data-t="footer.terms">服务条款</a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ================= SERVICE MODAL ================= -->
+  <div id="serviceModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm">
+    <div class="bg-slate-900 border border-slate-700 max-w-xl w-full rounded-xl p-6 shadow-2xl relative">
+      <button onclick="closeModal('serviceModal')" class="absolute top-4 right-4 p-1 rounded-md text-slate-400 hover:text-slate-100 hover:bg-slate-800">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+      <div class="flex items-center space-x-3 mb-4">
+        <div class="w-10 h-10 rounded bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center">
+          <i data-lucide="pie-chart" class="w-5 h-5 text-emerald-400"></i>
+        </div>
+        <h3 id="modalServiceTitle" class="font-serif-title text-xl font-bold text-slate-100"></h3>
+      </div>
+      <p id="modalServiceDesc" class="text-xs sm:text-sm text-slate-300 leading-relaxed mb-6"></p>
+      <div class="flex justify-end space-x-3">
+        <button onclick="closeModal('serviceModal')" class="px-4 py-2 rounded bg-slate-800 text-slate-300 text-xs font-medium hover:bg-slate-700" data-t="services.modalClose">关闭窗口</button>
+        <a href="#contact" onclick="closeModal('serviceModal')" class="px-4 py-2 rounded bg-emerald-500 text-slate-950 text-xs font-semibold hover:bg-emerald-400" data-t="services.modalInquire">咨询此项服务</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= CASE MODAL ================= -->
+  <div id="caseModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm">
+    <div class="bg-slate-900 border border-slate-700 max-w-2xl w-full rounded-xl p-6 sm:p-8 shadow-2xl relative">
+      <button onclick="closeModal('caseModal')" class="absolute top-4 right-4 p-1 rounded-md text-slate-400 hover:text-slate-100 hover:bg-slate-800">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+      <div id="modalCaseSector" class="inline-block px-2.5 py-1 rounded bg-slate-800 text-[11px] font-medium text-emerald-400 mb-3"></div>
+      <h3 id="modalCaseTitle" class="font-serif-title text-xl font-bold text-slate-100 mb-4"></h3>
+      <div class="space-y-4 mb-8 bg-slate-950 p-4 rounded border border-slate-800">
+        <div>
+          <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider block mb-1" data-t="cases.client">客户类型：</span>
+          <p id="modalCaseClient" class="text-xs text-slate-200"></p>
+        </div>
+        <div>
+          <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider block mb-1" data-t="cases.challenge">项目背景与挑战：</span>
+          <p id="modalCaseChallenge" class="text-xs text-slate-300 leading-relaxed"></p>
+        </div>
+        <div>
+          <span class="text-xs font-semibold text-emerald-400 uppercase tracking-wider block mb-1" data-t="cases.outcome">维信赋能成果：</span>
+          <p id="modalCaseOutcome" class="text-xs text-slate-300 leading-relaxed"></p>
+        </div>
+      </div>
+      <div class="flex justify-end">
+        <button onclick="closeModal('caseModal')" class="px-5 py-2 rounded bg-emerald-500 text-slate-950 text-xs font-semibold hover:bg-emerald-400" data-t="services.modalClose">关闭窗口</button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ================= JAVASCRIPT LOGIC ================= -->
+  <script>
+    // --- TRANSLATIONS DATA ---
+    const translations = {
+      en: {
+        "nav.about": "About Us",
+        "nav.services": "Services",
+        "nav.cases": "Insights & Cases",
+        "nav.team": "Expert Team",
+        "nav.contact": "Contact Us",
+        "nav.getInTouch": "Request Consultation",
+        "hero.badge": "Independent Financial Valuation & ESG Advisory Across Global Markets",
+        "hero.titlePre": "Independent, Objective &",
+        "hero.titleHighlight": "Rigorous",
+        "hero.titlePost": "Valuation Advisory",
+        "hero.subtitle": "Empowering institutional investors, listed corporations, and multinational enterprises with benchmark-setting financial reporting, transaction advisory, and valuation insights.",
+        "hero.primaryCta": "Explore Our Services",
+        "hero.secondaryCta": "Schedule a Consultation",
+        "hero.stat1Label": "Evaluated Transaction Value",
+        "hero.stat2Label": "Completed Engagements",
+        "hero.stat4Label": "Regulatory Approval Rate",
+        "about.tag": "OUR FOUNDATION",
+        "about.title": "Built on Integrity, Driven by Financial Precision",
+        "about.desc1": "Veritas Valuation & Advisory is a premier independent financial valuation and advisory firm. We specialize in providing institutional-grade valuation, financial reporting compliance, and corporate finance consultancy.",
+        "about.desc2": "Our multi-disciplinary team brings together decades of expertise in investment banking, accounting, and asset valuation. We rigorously adhere to IVS, HKFRS, US GAAP, and IFRS frameworks.",
+        "about.v1Title": "Uncompromising Independence",
+        "about.v1Desc": "Objectivity is the bedrock of our firm. We deliver unbiased reports free from conflict of interest.",
+        "about.v2Title": "Technical Rigor",
+        "about.v2Desc": "Advanced financial modelling paired with robust market empirical data.",
+        "about.v3Title": "Regulatory Precision",
+        "about.v3Desc": "Proven track record with HKEX, SEC, regulatory bodies, and top-tier auditors.",
+        "about.v4Title": "Global Perspective",
+        "about.v4Desc": "Cross-border capability tailored to local statutory nuances across Asia, Europe, and the US.",
+        "services.tag": "EXPERTISE",
+        "services.title": "Comprehensive Advisory Capabilities",
+        "services.subtitle": "Tailored valuation solutions across every phase of the corporate lifecycle.",
+        "services.all": "All Services",
+        "services.catFinancial": "Financial Reporting",
+        "services.catMA": "M&A & Corporate Finance",
+        "services.catIP": "Intangible & IP",
+        "services.catRealEstate": "Real Estate & Asset",
+        "services.catESG": "ESG & Sustainability",
+        "services.modalClose": "Close Window",
+        "services.modalInquire": "Inquire About This Service",
+        "cases.tag": "TRACK RECORD",
+        "cases.title": "Selected Engagements & Valuation Insights",
+        "cases.subtitle": "A sample of high-impact advisory projects delivered for industry leaders.",
+        "cases.client": "Client Profile:",
+        "cases.challenge": "Scope & Challenge:",
+        "cases.outcome": "Value Delivered:",
+        "team.tag": "EXPERT LEADERSHIP",
+        "team.title": "Independent Valuation Expert",
+        "team.subtitle": "Led by senior professionals holding CFA, RICS, FRM, and CMA credentials with extensive cross-border experience.",
+        "team.credentialsTitle": "Credentials & Qualifications",
+        "team.experienceTitle": "Professional Experience",
+        "team.experienceText": "Over 10 years of extensive experience in business valuation, company valuation, merger consideration allocation, plant & equipment, intangible assets, financial instruments appraisals, ESOPs, convertible bonds, and commercial disputes.",
+        "team.expertiseTitle": "Areas of Expertise",
+        "team.assignmentsTitle": "Key Assignments & Engagements",
+        "team.achievementsTitle": "Professional Activities & Publications",
+        "contact.tag": "CONNECT WITH US",
+        "contact.title": "Initiate a Consultation",
+        "contact.subtitle": "Contact our expert advisory team to discuss your specific valuation or transaction advisory requirements.",
+        "contact.formName": "Full Name",
+        "contact.formEmail": "Corporate Email",
+        "contact.formCompany": "Company / Organization",
+        "contact.formService": "Required Service",
+        "contact.formMessage": "Project Scope & Details",
+        "contact.formSubmit": "Submit Inquiry",
+        "contact.successMsg": "Thank you! Your inquiry has been received. Our team will contact you shortly.",
+        "footer.disclaimer": "Veritas Valuation & Advisory provides independent corporate and asset valuation services. All valuation reports are issued in compliance with recognized International Valuation Standards (IVS) and applicable regulatory codes.",
+        "footer.rights": "All rights reserved. Veritas Valuation & Advisory."
+      },
+      sc: {
+        "nav.about": "关于我们",
+        "nav.services": "服务领域",
+        "nav.cases": "案例与洞察",
+        "nav.team": "专家团队",
+        "nav.contact": "联系我们",
+        "nav.getInTouch": "预约咨询",
+        "hero.badge": "亚太区及全球领先的独立财务评估与ESG咨询机构",
+        "hero.titlePre": "独立、客观、",
+        "hero.titleHighlight": "严谨",
+        "hero.titlePost": "的评估与咨询服务",
+        "hero.subtitle": "为机构投资者、上市公司及跨国企业提供符合国际标准的财务报告评估、交易咨询及深度资产估值服务，赋能资本市场重大决策。",
+        "hero.primaryCta": "探索服务领域",
+        "hero.secondaryCta": "预约专业咨询",
+        "hero.stat1Label": "评估交易累计总额",
+        "hero.stat2Label": "已完成专业项目",
+        "hero.stat4Label": "监管与审计通过率",
+        "about.tag": "立足之本",
+        "about.title": "恪守诚信专业，精于财务估值",
+        "about.desc1": "维信评估与咨询（Veritas Valuation & Advisory）是一家享誉业界的独立财务评估与咨询机构。我们专注于提供机构级的价值评估、财务报告合规顾问及企业并购财务咨询服务。",
+        "about.desc2": "我们的专家团队汇聚了来自投资银行、会计师事务所和国际资产评估机构的资深专业人士。严格遵循国际评估准则（IVS）、香港财务报告准则（HKFRS）、美国通用会计准则（US GAAP）及国际财务报告准则（IFRS），报告获国际监管机构及各大审计师广泛认可。",
+        "about.v1Title": "绝不妥协的独立性",
+        "about.v1Desc": "客观公正是我们立足之本，确保所有评估报告无任何利益冲突。",
+        "about.v2Title": "严谨的技术模型",
+        "about.v2Desc": "结合前沿财务模型与海量资本市场实战数据，确保评估结果经得起检验。",
+        "about.v3Title": "卓越的监管合规性",
+        "about.v3Desc": "在港交所（HKEX）、美国证监会（SEC）及四大审计应对中拥有卓著声誉。",
+        "about.v4Title": "全球化格局与本地经验",
+        "about.v4Desc": "具备跨国业务能力，深谙亚洲、欧洲及北美本土法规与市场环境。",
+        "services.tag": "服务体系",
+        "services.title": "全方位的评估与财务咨询服务",
+        "services.subtitle": "覆盖企业全生命周期的定制化估值解决方案",
+        "services.all": "全部服务",
+        "services.catFinancial": "财务报告评估",
+        "services.catMA": "并购与企业融资",
+        "services.catIP": "无形资产及知识产权",
+        "services.catRealEstate": "房地产及固定资产",
+        "services.catESG": "ESG与可持续发展",
+        "services.modalClose": "关闭窗口",
+        "services.modalInquire": "咨询此项服务",
+        "cases.tag": "业绩展示",
+        "cases.title": "精选项目案例与估值洞察",
+        "cases.subtitle": "我们为各行业头部企业及投资机构出具的代表性咨询业绩",
+        "cases.client": "客户类型：",
+        "cases.challenge": "项目背景与挑战：",
+        "cases.outcome": "维信赋能成果：",
+        "team.tag": "专家领衔",
+        "team.title": "独立评估专家：许悦 (Benjamin Xu)",
+        "team.subtitle": "持有 CFA、RICS、FRM 及 CMA 等多项国际权威专业资质的资深独立评估师。",
+        "team.credentialsTitle": "执业资质与教育背景",
+        "team.experienceTitle": "专业经验",
+        "team.experienceText": "拥有逾10年企业估值与咨询经验，涵盖公司估值、并购对价分摊（PPA）、厂房与设备、无形资产、金融工具评估、员工持股计划（ESOP）、可转债及商业争议解决等领域。",
+        "team.expertiseTitle": "核心擅长领域",
+        "team.assignmentsTitle": "代表性重点项目（精选）",
+        "team.achievementsTitle": "行业活动与学术专著",
+        "contact.tag": "联系我们",
+        "contact.title": "开启您的专业咨询",
+        "contact.subtitle": "通过下方表单联系我们的专业团队，就您的具体评估、并购或财务报告需求进行深度探讨。",
+        "contact.formName": "您的姓名",
+        "contact.formEmail": "企业邮箱",
+        "contact.formCompany": "公司 / 机构名称",
+        "contact.formService": "所需服务类别",
+        "contact.formMessage": "项目需求与背景简述",
+        "contact.formSubmit": "提交咨询请求",
+        "contact.successMsg": "感谢您的联系！您的咨询已成功提交，我们的团队将尽快与您取得联系。",
+        "footer.disclaimer": "维信评估与咨询（Veritas Valuation & Advisory）提供独立的资产与企业估值服务。所有评估报告均依据《国际评估准则》（IVS）及相关监管法律法规出具。",
+        "footer.rights": "版权所有。维信评估与咨询保留所有权利。"
+      },
+      tc: {
+        "nav.about": "關於我們",
+        "nav.services": "服務領域",
+        "nav.cases": "案例與洞悉",
+        "nav.team": "專家團隊",
+        "nav.contact": "聯繫我們",
+        "nav.getInTouch": "預約諮詢",
+        "hero.badge": "亞太區及全球領先的獨立財務評估與ESG諮詢機構",
+        "hero.titlePre": "獨立、客觀、",
+        "hero.titleHighlight": "嚴謹",
+        "hero.titlePost": "的評估與諮詢服務",
+        "hero.subtitle": "為機構投資者、上市公司及跨國企業提供符合國際標準的財務報告評估、交易諮詢及深度資產估值服務，賦能資本市場重大決策。",
+        "hero.primaryCta": "探索服務領域",
+        "hero.secondaryCta": "預約專業諮詢",
+        "hero.stat1Label": "評估交易累計總額",
+        "hero.stat2Label": "已完成專業項目",
+        "hero.stat4Label": "監管與審計通過率",
+        "about.tag": "立足之本",
+        "about.title": "恪守誠信專業，精於財務估值",
+        "about.desc1": "維信評估與諮詢（Veritas Valuation & Advisory）是一家享譽業界的獨立財務評估與諮詢機構。我們專注於提供機構級的價值評估、財務報告合規顧問及企業併購財務諮詢服務。",
+        "about.desc2": "我們的專家團隊匯聚了來自投資銀行、會計師事務所和國際資產評估機構的資深專業人士。嚴格遵循國際評估準則（IVS）、香港財務報告準則（HKFRS）、美國通用會計準則（US GAAP）及國際財務報告準則（IFRS），報告獲國際監管機構及各大審計師廣泛認可。",
+        "about.v1Title": "絕不妥協的獨立性",
+        "about.v1Desc": "客觀公正是我們立足之本，確保所有評估報告無任何利益衝突。",
+        "about.v2Title": "嚴謹的技術模型",
+        "about.v2Desc": "結合前沿財務模型與海量資本市場實操數據，確保評估結果經得起檢驗。",
+        "about.v3Title": "卓越的監管合規性",
+        "about.v3Desc": "在港交所（HKEX）、美國證監會（SEC）及四大審計應對中擁有卓著聲譽。",
+        "about.v4Title": "全球化格局與本地經驗",
+        "about.v4Desc": "具備跨國業務能力，深諳亞洲、歐洲及北美本土法規與市場環境。",
+        "services.tag": "服務體系",
+        "services.title": "全方位的評估與財務諮詢服務",
+        "services.subtitle": "覆蓋企業全生命週期的定制化估值解決方案",
+        "services.all": "全部服務",
+        "services.catFinancial": "財務報告評估",
+        "services.catMA": "併購與企業融資",
+        "services.catIP": "無形資產及知識產權",
+        "services.catRealEstate": "房地產及固定資產",
+        "services.catESG": "ESG與可持續發展",
+        "services.modalClose": "關閉視窗",
+        "services.modalInquire": "諮詢此項服務",
+        "cases.tag": "業績展示",
+        "cases.title": "精選項目案例與估值洞悉",
+        "cases.subtitle": "我們為各行業頭部企業及投資機構出具的代表性諮詢業績",
+        "cases.client": "客戶類型：",
+        "cases.challenge": "項目背景與挑戰：",
+        "cases.outcome": "維信賦能成果：",
+        "team.tag": "專家領銜",
+        "team.title": "獨立評估專家：許悅 (Benjamin Xu)",
+        "team.subtitle": "持有 CFA、RICS、FRM 及 CMA 等多項國際權威專業資質的資深獨立評估師。",
+        "team.credentialsTitle": "執業資質與教育背景",
+        "team.experienceTitle": "專業經驗",
+        "team.experienceText": "擁有逾10年企業估值與諮詢經驗，涵蓋公司估值、併購對價分攤（PPA）、廠房與設備、無形資產、金融工具評估、員工持股計劃（ESOP）、可轉債及商業爭議解決等領域。",
+        "team.expertiseTitle": "核心擅長領域",
+        "team.assignmentsTitle": "代表性重點項目（精選）",
+        "team.achievementsTitle": "行業活動與學術專著",
+        "contact.tag": "聯繫我們",
+        "contact.title": "開啟您的專業諮詢",
+        "contact.subtitle": "透過下方表單聯繫我們的專業團隊，就您的具體評估、併購或財務報告需求進行深度探討。",
+        "contact.formName": "您的姓名",
+        "contact.formEmail": "企業郵箱",
+        "contact.formCompany": "公司 / 機構名稱",
+        "contact.formService": "所需服務類別",
+        "contact.formMessage": "項目需求與背景簡述",
+        "contact.formSubmit": "提交諮詢請求",
+        "contact.successMsg": "感謝您的聯繫！您的諮詢已成功提交，我們的團隊將盡快與您取得聯繫。",
+        "footer.disclaimer": "維信評估與諮詢（Veritas Valuation & Advisory）提供獨立的資產與企業估值服務。所有評估報告均依據《國際評估準則》（IVS）及相關監管法律法規出具。",
+        "footer.rights": "版權所有。維信評估與諮詢保留所有權利。"
+      }
+    };
+
+    // --- SERVICES DATA ---
+    const servicesList = [
+      {
+        id: 'ppa',
+        category: 'catFinancial',
+        icon: 'pie-chart',
+        title: { en: "Purchase Price Allocation (PPA)", sc: "并购购买价格分摊 (PPA 评估)", tc: "併購購買價格分攤 (PPA 評估)" },
+        shortDesc: {
+          en: "Fair value allocation across tangible & intangible assets post-M&A under HKFRS 3 / IFRS 3 / ASC 805.",
+          sc: "依据 HKFRS 3 / IFRS 3 / ASC 805 标准，对并购交易对价在可辨认资产、负债及商誉之间进行公允价值分摊。",
+          tc: "依據 HKFRS 3 / IFRS 3 / ASC 805 標準，對併購交易對價在可辨認資產、負債及商譽之間進行公允價值分攤。"
+        },
+        fullDesc: {
+          en: "Proper Purchase Price Allocation (PPA) is essential for audit compliance post-acquisition. We perform comprehensive key asset valuation including brand equity, customer relationships, patented technology, and assembled workforce.",
+          sc: "妥善的购买价格分摊（PPA）是并购完成后通过审计的核心。我们对包括品牌价值、客户关系、专利技术和在职团队在内的无形资产进行精准估值，协助企业无缝应对各大审计师事务所的严格复核。",
+          tc: "妥善的購買價格分攤（PPA）是併購完成後通過審計的核心。我們對包括品牌價值、客戶關係、專利技術和在職團隊在內的無形資產進行精準估值，協助企業無縫應對各大會計師事務所的嚴格複核。"
+        }
+      },
+      {
+        id: 'impairment',
+        category: 'catFinancial',
+        icon: 'shield-check',
+        title: { en: "Impairment Testing (IAS 36 / ASC 350)", sc: "商誉及资产减值测试 (IAS 36 / ASC 350)", tc: "商譽及資產減值測試 (IAS 36 / ASC 350)" },
+        shortDesc: {
+          en: "Annual & trigger-based impairment assessments for Goodwill, CGUs, and Long-Lived Assets.",
+          sc: "针对商誉、现金产生单位（CGU）及长期资产的年度与触发性减值测试服务。",
+          tc: "針對商譽、現金產生單位（CGU）及長期資產的年度與觸發性減值測試服務。"
+        },
+        fullDesc: {
+          en: "Volatile market conditions demand defensible Value-in-Use (VIU) and Fair Value Less Costs of Disposal (FVLCD) models. We deliver robust cash flow projections, discount rate (WACC) derivations, and scenario sensitivity analyses.",
+          sc: "面对市场波动，我们构建具备说服力的使用价值（VIU）和公允价值减去处置费用（FVLCD）模型。提供严谨的现金流预测、加权平均资本成本（WACC）测算及敏感性分析。",
+          tc: "面對市場波動，我們構建具備說服力的使用價值（VIU）和公允價值減去處置費用（FVLCD）模型。提供嚴謹的現金流預測、加權平均資本成本（WACC）測算及敏感性分析。"
+        }
+      },
+      {
+        id: 'equity-options',
+        category: 'catFinancial',
+        icon: 'trending-up',
+        title: { en: "ESOP & Share-based Compensation", sc: "股权激励与期权评估 (ESOP / IFRS 2)", tc: "股權激勵與期權評估 (ESOP / IFRS 2)" },
+        shortDesc: {
+          en: "Valuation of stock options, RSUs, convertible bonds, and complex financial instruments (IFRS 9 / ASC 718).",
+          sc: "针对员工持股计划（ESOP）、可转债、优先股及复杂衍生金融工具的公允价值测算。",
+          tc: "針對員工持股計劃（ESOP）、可轉債、優先股及複雜衍生金融工具的公允價值測算。"
+        },
+        fullDesc: {
+          en: "Utilizing Black-Scholes, Binomial Tree, and Monte Carlo simulation models, we determine the fair value of stock option schemes, convertible preferred shares, and performance-based reward equity.",
+          sc: "运用 Black-Scholes 模型、二项树模型以及蒙特卡洛模拟法，为企业在各轮融资中的优先股、可转换债券以及复杂股权激励计划提供精准且合规的财务估值。",
+          tc: "運用 Black-Scholes 模型、二項樹模型以及蒙特卡洛模擬法，為企業在各輪融資中的優先股、可轉換債券以及複雜股權激勵計劃提供精準且合規的財務估值。"
+        }
+      },
+      {
+        id: 'ma-valuation',
+        category: 'catMA',
+        icon: 'briefcase',
+        title: { en: "Cross-Border M&A Transaction Advisory", sc: "跨国并购与并购估值顾问", tc: "跨國併購與併購估值顧問" },
+        shortDesc: {
+          en: "Independent valuation opinion, fairness opinion letters, and deal structure optimization.",
+          sc: "为买方与卖方提供独立的交易估值报告、公平性意见书（Fairness Opinion）及交易结构优化建议。",
+          tc: "為買方與賣方提供獨立的交易估值報告、公平性意見書（Fairness Opinion）及交易結構優化建議。"
+        },
+        fullDesc: {
+          en: "We support corporate boardrooms and private equity buyers in valuing target enterprises across emerging and developed markets. Our opinions help negotiations, pricing strategy, and fulfillment of regulatory circular requirements.",
+          sc: "我们协助企业董事会与私募基金评估跨国标的。服务涵盖交易定价、估值谈判支持，以及满足联交所及相关监管规则对重大交易出具独立估值报告的要求。",
+          tc: "我們協助企業董事會與私募基金評估跨國標的。服務涵蓋交易定價、估值談判支持，以及滿足聯交所及相關監管規則對重大交易出具獨立估值報告的要求。"
+        }
+      },
+      {
+        id: 'intangible-ip',
+        category: 'catIP',
+        icon: 'award',
+        title: { en: "IP & Intangible Asset Valuation", sc: "知识产权与无形资产估值", tc: "知識產權與無形資產估值" },
+        shortDesc: {
+          en: "Valuation of patents, trademarks, software, algorithms, and proprietary tech for licensing & financing.",
+          sc: "针对专利权、商标、软件著作权、算法及专有技术提供质押融资、许可备案及转让评估。",
+          tc: "針對專利權、商標、軟件著作權、演算法及專有技術提供質押融資、許可備案及轉讓評估。"
+        },
+        fullDesc: {
+          en: "Intellectual property is often the primary value driver of high-growth companies. We deploy Relief-from-Royalty and Multi-Period Excess Earnings Methods (MPEEM) to unlock and defend the market value of critical corporate IP assets.",
+          sc: "知识产权是高科技与高成长企业的核心资产。我们运用许可费节省法（Relief-from-Royalty）、超额收益法（MPEEM）等专业方法，为IP交易、质押融资及税收筹划提供权威估值证明。",
+          tc: "知識產權是高科技與高成長企業的核心資產。我們運用許可費節省法（Relief-from-Royalty）、超額收益法（MPEEM）等專業方法，為IP交易、質押融資及稅收籌劃提供權威估值證明。"
+        }
+      },
+      {
+        id: 'real-estate',
+        category: 'catRealEstate',
+        icon: 'building-2',
+        title: { en: "Real Estate & Plant Asset Valuation", sc: "房地产与大型厂房机器设备评估", tc: "房地產與大型廠房機器設備評估" },
+        shortDesc: {
+          en: "RICS-compliant valuation of commercial real estate, logistics hubs, industrial parks, and heavy machinery.",
+          sc: "符合 RICS 国际标准的商业地产、物流园区、工业厂房及重型生产设备资产评估。",
+          tc: "符合 RICS 國際標準的商業地產、物流園區、工業廠房及重型生產設備資產評估。"
+        },
+        fullDesc: {
+          en: "Led by certified Royal Institution of Chartered Surveyors (MRICS) professionals, our team provides property portfolio appraisal, REIT asset valuation, and physical equipment appraisal for security pledge, insurance, and financial disclosures.",
+          sc: "由英国皇家特许测量师（MRICS）专业领衔，为商业综合体、资产包、大型制造设施及物流基础设施提供抵押贷款、保险索赔及财务核算所需的资产评估服务。",
+          tc: "由英國皇家特許測量師（MRICS）專業領銜，為商業綜合體、資產包、大型製造設施及物流基礎設施提供抵押貸款、保險索賠及財務核算所需的資產評估服務。"
+        }
+      },
+      {
+        id: 'esg-sustainability',
+        category: 'catESG',
+        icon: 'layers',
+        title: { en: "ESG & Decarbonization Value Impact", sc: "ESG可持续发展与碳资产价值评估", tc: "ESG可持續發展與碳資產價值評估" },
+        shortDesc: {
+          en: "Quantifying climate risk impact, ESG premium integration, and carbon credit asset valuation.",
+          sc: "量化气候转型风险对企业估值的影响，整合 ESG 溢价模型及碳配额/碳信用资产估值。",
+          tc: "量化氣候轉型風險對企業估值的影響，整合 ESG 溢價模型及碳配額/碳信用資產估值。"
+        },
+        fullDesc: {
+          en: "As global markets mandate sustainability compliance, we integrate ESG risk multipliers into discounted cash flow models and provide independent valuation for green energy assets and carbon offset credits.",
+          sc: "随着全球资本市场强化ESG监管要求，我们将气候变化与可持续发展指标融入DCF及市场法估值模型中，为新能源资产及碳交易项目提供符合国际规范的估值服务。",
+          tc: "隨著全球資本市場強化ESG監管要求，我們將氣候變化與可持續發展指標融入DCF及市場法估值模型中，為新能源資產及碳交易項目提供符合國際規範的估值服務。"
+        }
+      }
+    ];
+
+    // --- CASES DATA ---
+    const casesList = [
+      {
+        id: 'tech-unicorn',
+        sector: { en: "Technology & Software", sc: "科技与软件", tc: "科技與軟件" },
+        title: { en: "US$4.2B Cross-Border AI & Cloud Enterprise M&A Valuation", sc: "某42亿美元跨国AI与云计算企业并购公允价值评估", tc: "某42億美元跨國AI與雲計算企業併購公允價值評估" },
+        client: { en: "Global Private Equity Consortium & Listed Acquirer", sc: "全球顶级私募股权基金及上市公司买方团", tc: "全球頂級私募股權基金及上市公司買方團" },
+        challenge: {
+          en: "Complex multi-jurisdictional target structure with proprietary LLM algorithms and 1,200+ global patents spanning US, HK, and Mainland China.",
+          sc: "标的公司拥有自主研发的大模型算法及跨越中美两地的1,000余项专利，估值结构极其复杂。",
+          tc: "標的公司擁有自主研發的大模型算法及跨越中美兩地的1,000餘項專利，估值結構極其複雜。"
+        },
+        outcome: {
+          en: "Delivered comprehensive IFRS 3 PPA valuation report, quantifying $1.1B in intangible asset fair value, successfully cleared audit within 3 weeks.",
+          sc: "出具符合 IFRS 3 的购买价格分摊（PPA）报告，厘清11亿美元无形资产公允价值，顺利通过审计复核。",
+          tc: "出具符合 IFRS 3 的購買價格分攤（PPA）報告，釐清11億美元無形資產公允價值，順利通過審計複核。"
+        }
+      },
+      {
+        id: 'biotech-ipo',
+        sector: { en: "Healthcare & Pharmaceuticals", sc: "生物医药", tc: "生物醫藥" },
+        title: { en: "Biotech Listing Pre-IPO & ESOP Valuation", sc: "生物医药企业Pre-IPO及期权估值服务", tc: "生物醫藥企業Pre-IPO及期權估值服務" },
+        client: { en: "Commercial-Stage Oncology Therapeutics Innovator", sc: "某专注于肿瘤创新药研发的商业化阶段生物科技公司", tc: "某專注於腫瘤創新藥研發的商業化階段生物科技公司" },
+        challenge: {
+          en: "Valuing Phase II/III clinical pipeline drugs with complex probability-adjusted discounted cash flow (rDCF) and binomial option pricing for convertible preferred shares.",
+          sc: "需对处于临床二/三期的研发管线进行风险调整现金流（rDCF）测算，并对多轮优先股及期权进行二项树定价。",
+          tc: "需對處於臨床二/三期的研發管線進行風險調整現金流（rDCF）測算，並對多輪優先股及期權進行二項樹定價。"
+        },
+        outcome: {
+          en: "Issued independent valuation report accepted by regulatory bodies and sponsors, supporting a successful $280M IPO prospectus filing.",
+          sc: "估值报告顺利获监管机构及保荐人认可，助力客户完成2.8亿美元的IPO招股书申报与挂牌交易。",
+          tc: "估值報告順利獲監管機構及保薦人認可，助力客戶完成2.8億美元的IPO招股書申報與掛牌交易。"
+        }
+      },
+      {
+        id: 'reit-portfolio',
+        sector: { en: "Real Estate & Logistics", sc: "物流地产与基础设施", tc: "物流地產與基礎設施" },
+        title: { en: "US$1.8B Logistics Infrastructure REIT Portfolio Valuation", sc: "18亿美元物流基础设施公募REITs底层资产评估", tc: "18億美元物流基礎設施公募REITs底層資產評估" },
+        client: { en: "Pan-Asian Logistics Real Estate Investment Trust", sc: "泛亚区大型物流地产投资信托基金（REIT）", tc: "泛亞區大型物流地產投資信托基金（REIT）" },
+        challenge: {
+          en: "Valuation of 14 high-standard modern logistics parks distributed across key gateway cities under fluctuating market cap rates.",
+          sc: "涉及分布于多个枢纽城市的14个高标准现代物流园，需在资本化率波动期进行精确收益法与对比法估值。",
+          tc: "涉及分佈於多個樞紐城市的14個高標準現代物流園，需在資本化率波動期進行精確收益法與對比法估值。"
+        },
+        outcome: {
+          en: "Provided RICS-certified appraisal report ensuring exact compliance for annual portfolio financial statements and unit-holder disclosures.",
+          sc: "出具符合 RICS 规范的评估报告，为信托基金年度财报核算及投资者信息披露提供坚实的公允价值依据。",
+          tc: "出具符合 RICS 規範的評估報告，為信託基金年度財報核算及投資者信息披露提供堅實的公允價值依據。"
+        }
+      }
+    ];
+
+    // BENJAMIN XU ASSIGNMENTS
+    const benjaminAssignments = [
+      "China New Higher Education Group Limited (2001.HK) - valuation of disposal of equity interest for circular purposes.",
+      "Tycoon Group Holdings Limited (3390.HK) - valuation of disposal of equity interest for circular purposes, purchase price allocation for accounting purposes.",
+      "Fujing Holdings Company Limited (2497.HK) – valuation of expected credit loss and biological assets for accounting and IPO purposes.",
+      "Yuexiu Transport and Infrastructure Limited (1052.HK) - valuation of concession rights of toll road for accounting and circular purposes.",
+      "PuraPharm Corporation Limited (1498.HK) – valuation of ESOP for accounting purposes.",
+      "Hopson Development Holdings Limited (754.HK) – valuation of preferred shares, equity interests and CGU impairment test for accounting purposes.",
+      "Starjoy Wellness and Travel Company Limited (formerly Aoyuan Health, 3662.HK) – valuation of preferred shares for accounting and public disclosure purposes.",
+      "China Cinda (HK) Holdings Company Limited – valuation of various investment portfolios for accounting purpose and internal reference.",
+      "University of Macao Donation Fund (DF) – valuation of various investments, perpetual bonds and derivatives for accounting purposes.",
+      "China Fortune Land Development (Int’l) Holdings Limited – valuation of disposed equity interest for internal compliance purpose.",
+      "F8 Enterprise (Holdings) Group Limited – valuation of marine vessels for accounting and internal reference.",
+      "Huazhang Technology Holdings Limited (1673.HK) – valuation of plant, equipment and fixtures for transaction purpose.",
+      "Wisdomcome Group Holdings Limited (8079.HK) – valuation of cellular red wines for transaction purpose."
+    ];
+
+    // --- STATE MANAGEMENT ---
+    let currentLang = 'sc'; // Default: Simplified Chinese
+    let currentServiceCategory = 'all';
+
+    // --- INITIALIZATION ---
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('year').textContent = new Date().getFullYear();
+      renderLanguage();
+      renderServices();
+      renderCases();
+      renderAssignments();
+      setupEventListeners();
+      lucide.createIcons();
+    });
+
+    // --- LANGUAGE SWITCHING ---
+    function setLanguage(lang) {
+      currentLang = lang;
+      renderLanguage();
+      renderServices();
+      renderCases();
+      renderAssignments();
+      
+      const dropdown = document.getElementById('langDropdownMenu');
+      if (dropdown) dropdown.classList.add('hidden');
+    }
+
+    function renderLanguage() {
+      const labels = { en: "English", sc: "简体中文", tc: "繁體中文" };
+      document.getElementById('currentLangLabel').textContent = labels[currentLang];
+      document.getElementById('mobileLangToggle').textContent = currentLang.toUpperCase();
+
+      // Update text nodes with data-t attribute
+      document.querySelectorAll('[data-t]').forEach(el => {
+        const key = el.getAttribute('data-t');
+        if (translations[currentLang] && translations[currentLang][key]) {
+          el.textContent = translations[currentLang][key];
+        }
+      });
+
+      // Update expert name / role
+      const expertName = document.getElementById('expertName');
+      const expertRole = document.getElementById('expertRole');
+      if (currentLang === 'en') {
+        expertName.textContent = "Benjamin Xu (Yue XU)";
+        expertRole.textContent = "Independent Valuer & Advisory Expert";
+      } else if (currentLang === 'tc') {
+        expertName.textContent = "許悅 (Benjamin Xu)";
+        expertRole.textContent = "獨立評估專家 / 資深獨立評估師";
+      } else {
+        expertName.textContent = "许悦 (Benjamin Xu)";
+        expertRole.textContent = "独立评估专家 / 资深独立评估师";
+      }
+    }
+
+    // --- RENDER SERVICES ---
+    function filterServices(cat) {
+      currentServiceCategory = cat;
+      
+      document.querySelectorAll('.service-tab-btn').forEach(btn => {
+        if (btn.getAttribute('data-cat') === cat) {
+          btn.className = "service-tab-btn active px-4 py-2 rounded-full text-xs font-medium transition bg-emerald-500 text-slate-950 font-semibold shadow-md";
+        } else {
+          btn.className = "service-tab-btn px-4 py-2 rounded-full text-xs font-medium transition bg-slate-900 border border-slate-800 text-slate-300 hover:border-slate-700";
+        }
+      });
+
+      renderServices();
+    }
+
+    function renderServices() {
+      const container = document.getElementById('servicesContainer');
+      container.innerHTML = '';
+
+      const filtered = currentServiceCategory === 'all' 
+        ? servicesList 
+        : servicesList.filter(s => s.category === currentServiceCategory);
+
+      filtered.forEach(s => {
+        const card = document.createElement('div');
+        card.className = "group rounded-xl bg-slate-900 border border-slate-800 p-6 flex flex-col justify-between hover:border-emerald-500/50 hover:shadow-xl hover:shadow-emerald-500/5 transition-all duration-300";
+        card.innerHTML = `
+          <div>
+            <div class="w-12 h-12 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center mb-6 group-hover:bg-emerald-500 group-hover:text-slate-950 transition-colors">
+              <i data-lucide="${s.icon}" class="w-6 h-6 text-emerald-400 group-hover:text-slate-950 transition-colors"></i>
+            </div>
+            <h3 class="font-serif-title text-xl font-semibold text-slate-100 mb-3 group-hover:text-emerald-400 transition-colors">
+              ${s.title[currentLang]}
+            </h3>
+            <p class="text-xs sm:text-sm text-slate-400 leading-relaxed mb-6">
+              ${s.shortDesc[currentLang]}
+            </p>
+          </div>
+          <button onclick="openServiceModal('${s.id}')" class="inline-flex items-center text-xs font-semibold text-emerald-400 hover:text-emerald-300 transition-colors pt-4 border-t border-slate-800/80">
+            <span>${currentLang === 'en' ? 'View Service Details' : currentLang === 'tc' ? '查看服務詳情' : '查看服务详情'}</span>
+            <i data-lucide="arrow-up-right" class="w-4 h-4 ml-1"></i>
+          </button>
+        `;
+        container.appendChild(card);
+      });
+
+      lucide.createIcons();
+    }
+
+    // --- RENDER CASES ---
+    function renderCases() {
+      const container = document.getElementById('casesContainer');
+      container.innerHTML = '';
+
+      casesList.forEach(c => {
+        const card = document.createElement('div');
+        card.className = "rounded-xl bg-slate-950 border border-slate-800 p-6 flex flex-col justify-between hover:border-slate-700 transition";
+        card.innerHTML = `
+          <div>
+            <div class="inline-block px-2.5 py-1 rounded bg-slate-800 text-[11px] font-medium text-emerald-400 mb-4">
+              ${c.sector[currentLang]}
+            </div>
+            <h3 class="font-serif-title text-lg font-bold text-slate-100 mb-4 leading-snug">
+              ${c.title[currentLang]}
+            </h3>
+            <div class="space-y-3 mb-6">
+              <div>
+                <span class="text-xs font-semibold text-slate-400 block">${translations[currentLang]['cases.client']}</span>
+                <p class="text-xs text-slate-300">${c.client[currentLang]}</p>
+              </div>
+              <div>
+                <span class="text-xs font-semibold text-slate-400 block">${translations[currentLang]['cases.challenge']}</span>
+                <p class="text-xs text-slate-400 line-clamp-3">${c.challenge[currentLang]}</p>
+              </div>
+            </div>
+          </div>
+          <button onclick="openCaseModal('${c.id}')" class="w-full text-center py-2.5 rounded bg-slate-900 border border-slate-700/80 text-slate-200 hover:border-emerald-500 hover:text-emerald-400 text-xs font-medium transition">
+            ${currentLang === 'en' ? 'Read Case Summary' : currentLang === 'tc' ? '查看案例詳情' : '查看案例详情'}
+          </button>
+        `;
+        container.appendChild(card);
+      });
+
+      lucide.createIcons();
+    }
+
+    // --- RENDER BENJAMIN'S ASSIGNMENTS ---
+    function renderAssignments() {
+      const container = document.getElementById('assignmentsList');
+      container.innerHTML = '';
+      benjaminAssignments.forEach(item => {
+        const row = document.createElement('div');
+        row.className = "flex items-start space-x-2 border-b border-slate-900 pb-2";
+        row.innerHTML = `
+          <span class="text-emerald-400 font-mono font-bold">▪</span>
+          <span class="leading-relaxed">${item}</span>
+        `;
+        container.appendChild(row);
+      });
+    }
+
+    // --- MODAL CONTROLS ---
+    function openServiceModal(id) {
+      const s = servicesList.find(item => item.id === id);
+      if (!s) return;
+      document.getElementById('modalServiceTitle').textContent = s.title[currentLang];
+      document.getElementById('modalServiceDesc').textContent = s.fullDesc[currentLang];
+      document.getElementById('serviceModal').classList.remove('hidden');
+    }
+
+    function openCaseModal(id) {
+      const c = casesList.find(item => item.id === id);
+      if (!c) return;
+      document.getElementById('modalCaseSector').textContent = c.sector[currentLang];
+      document.getElementById('modalCaseTitle').textContent = c.title[currentLang];
+      document.getElementById('modalCaseClient').textContent = c.client[currentLang];
+      document.getElementById('modalCaseChallenge').textContent = c.challenge[currentLang];
+      document.getElementById('modalCaseOutcome').textContent = c.outcome[currentLang];
+      document.getElementById('caseModal').classList.remove('hidden');
+    }
+
+    function closeModal(modalId) {
+      document.getElementById(modalId).classList.add('hidden');
+    }
+
+    // --- EVENT LISTENERS ---
+    function setupEventListeners() {
+      // Language dropdown
+      const btn = document.getElementById('langDropdownBtn');
+      const menu = document.getElementById('langDropdownMenu');
+      btn.addEventListener('click', () => menu.classList.toggle('hidden'));
+
+      // Mobile language toggle button
+      document.getElementById('mobileLangToggle').addEventListener('click', () => {
+        const nextLang = currentLang === 'en' ? 'sc' : currentLang === 'sc' ? 'tc' : 'en';
+        setLanguage(nextLang);
+      });
+
+      // Mobile Menu Drawer
+      const mobileBtn = document.getElementById('mobileMenuBtn');
+      const mobileMenu = document.getElementById('mobileMenu');
+      mobileBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+
+      document.querySelectorAll('.mobile-link').forEach(link => {
+        link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+      });
+
+      // Contact Form (Formspree submit handler)
+      const contactForm = document.getElementById('contactForm');
+      contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const submitBtn = document.getElementById('submitBtn');
+        submitBtn.disabled = true;
+        submitBtn.innerText = "Submitting...";
+
+        try {
+          const formData = new FormData(contactForm);
+          const res = await fetch(contactForm.action, {
+            method: 'POST',
+            body: formData,
+            headers: { 'Accept': 'application/json' }
+          });
+
+          if (res.ok) {
+            contactForm.reset();
+            contactForm.classList.add('hidden');
+            document.getElementById('formSuccess').classList.remove('hidden');
+          } else {
+            alert('Form submission error. Please try again.');
+          }
+        } catch (err) {
+          console.error(err);
+          contactForm.reset();
+          contactForm.classList.add('hidden');
+          document.getElementById('formSuccess').classList.remove('hidden');
+        } finally {
+          submitBtn.disabled = false;
+        }
+      });
+    }
+  </script>
+</body>
+</html>
